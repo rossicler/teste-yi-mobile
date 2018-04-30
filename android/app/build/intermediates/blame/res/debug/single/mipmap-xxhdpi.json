@@ -2,5 +2,9 @@
     {
         "merged": "/home/junior/react/mobile/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
         "source": "/home/junior/react/mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/junior/react/new/teste-yi-mobile/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
+        "source": "/home/junior/react/new/teste-yi-mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     }
 ]
