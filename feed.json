@@ -1,0 +1,57 @@
+{
+  "stats": {
+    "all": 5,
+    "pending": 1,
+    "ended": 4
+  },
+  "orders": [
+    {
+      "18/01/2018": [
+        {
+          "id": 1403,
+          "name": "Bárbara Pereira",
+          "items": 3,
+          "shipping": "expedited",
+          "price": 26990,
+          "payment": "paid"
+        },
+        {
+          "id": 1402,
+          "name": "Pedro Carvalho",
+          "items": 1,
+          "shipping": "custom",
+          "price": 9990,
+          "payment": "waiting"
+        },
+        {
+          "id": 1401,
+          "name": "Jean Matos",
+          "items": 2,
+          "shipping": "takeout",
+          "price": 20272,
+          "payment": "refused"
+        }
+      ]
+    },
+    {
+      "17/01/2018": [
+        {
+          "id": 1400,
+          "name": "Lucas Silva",
+          "items": 5,
+          "shipping": "expedited",
+          "price": 7690,
+          "payment": "paid"
+        },
+        {
+          "id": 1399,
+          "name": "Rodrigo Cavalcante",
+          "items": 3,
+          "shipping": "normal",
+          "price": 12280,
+          "payment": "paid"
+        }
+      ]
+    }
+  ]
+}
