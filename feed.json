@@ -1,12 +1,20 @@
 {
   "stats": {
-    "all": 5,
-    "pending": 1,
+    "all": 6,
+    "pending": 2,
     "ended": 4
   },
   "orders": [
     {
       "18/01/2018": [
+        {
+          "id": 1404,
+          "name": "Rossicler Junior",
+          "items": 5,
+          "shipping": "expedited",
+          "price": 50690,
+          "payment": "waiting"
+        },
         {
           "id": 1403,
           "name": "Bárbara Pereira",
