@@ -64,7 +64,7 @@ export default class Post extends Component {
             renderItem = {({item: days}) =>
             <View>
                 { Object.values(days)[0].map((item)=>(
-                    <View style={styles.card}>
+                    <View key={item.id} style={styles.card}>
                     <Text style={styles.postTitle}> Pedido #{item.id}</Text>
                     <View style={styles.row}>
                         <View style={styles.item}>
