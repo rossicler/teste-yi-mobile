@@ -7,19 +7,25 @@ import {
     ScrollView,
     FlatList
 } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import data from '../../../feed.json';
 
-const data = require('../../../feed.json');
-var i = 0;
+var color = '';
 
 export default class Post extends Component {
+  constructor(){
+    super();
+    this.state = {
+        data: data.orders
+    }
+  }
+
   static navigationOptions = {
       tabBarLabel: 'Todos (' + data.stats.all + ')'
   }
 
   checkPayment(payment){
       if(payment == 'paid'){
-          return 'processado'
+          return 'processado';
       } else if (payment == 'waiting') {
           return 'em espera';
       } else {
@@ -39,27 +45,50 @@ export default class Post extends Component {
       }
   }
 
+  setColorPayment(payment){
+    if(payment == 'paid'){
+        this.color = '#93BD65';
+    } else if (payment == 'waiting'){
+        this.color = '#F5A623';
+    } else {
+        this.color = '#D0021B';
+    }
+  }
+  
   render() {
     return (
 
     <ScrollView>
-      <View style={styles.card}>
-        <Text style={styles.postTitle}> Pedido #{data.orders[0]["18/01/2018"][0].id}</Text>
-        <View style={styles.row}>
-            <View style={styles.item}>
-                <Text style={styles.postContent}> de {data.orders[0]["18/01/2018"][0].name} </Text>
-                <Text style={styles.postContent}> Itens ({data.orders[0]["18/01/2018"][0].items}) </Text>
-                <Text style={styles.postContent}> Tipo de entrega </Text>
-                <Text style={styles.postContent && styles.bold}> {this.checkShipping(data.orders[0]["18/01/2018"][0].shipping)} </Text>
+        <FlatList
+            data = {this.state.data}
+            renderItem = {({item: days}) =>
+            <View>
+                { Object.values(days)[0].map((item)=>(
+                    <View style={styles.card}>
+                    <Text style={styles.postTitle}> Pedido #{item.id}</Text>
+                    <View style={styles.row}>
+                        <View style={styles.item}>
+                            <Text style={styles.postContent}> de {item.name} </Text>
+                            <Text style={styles.postContent}> Itens ({item.items}) </Text>
+                            <Text style={styles.postContent}> Tipo de entrega </Text>
+                            <Text style={styles.postContent && styles.bold}> {this.checkShipping(item.shipping)} </Text>
+                        </View>
+                        <View style={styles.item}>
+                            <Text style={styles.postContent}> total </Text>
+                            <Text style={styles.postContent && styles.preço}> R$ {((item.price)/100).toFixed(2)} </Text>
+                            <Text style={styles.postContent && styles.bold}> pagamento {this.setColorPayment(item.payment)} </Text>
+                            <Text style={styles.postContent && {color: this.color, borderColor: this.color,
+                            borderWidth: 1, borderRadius: 3, width: 100, textAlign: 'center'}}> {this.checkPayment(item.payment)} </Text>
+                        </View>
+                    </View>
+                  </View>
+                )
+                )}
             </View>
-            <View style={styles.item}>
-                <Text style={styles.postContent}> total </Text>
-                <Text style={styles.postContent && styles.preço}> R$ {((data.orders[0]["18/01/2018"][0].price)/100).toFixed(2)} </Text>
-                <Text style={styles.postContent && styles.bold}> pagamento </Text>
-                <Text style={styles.postContent && styles.status}> {this.checkPayment(data.orders[0]["18/01/2018"][0].payment)} </Text>
-            </View>
-        </View>
-      </View>
+        }
+        keyExtractor={(days, index) => index.toString()}
+        />
+      
     </ScrollView>
     );
   }
@@ -96,13 +125,4 @@ const styles = StyleSheet.create({
     preço: {
         color: '#FF1654',
     },
-    status: {
-        borderWidth: 1,
-        borderColor: '#93BD65',
-        color: '#93BD65',
-        borderRadius: 3,
-        paddingHorizontal: 10,
-        paddingVertical: 1,
-        width: 100,
-    }
 });
